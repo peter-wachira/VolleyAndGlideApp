@@ -31,6 +31,10 @@ public class AnimeActivity extends AppCompatActivity {
         String rating = getIntent().getExtras().getString("anime_rating");
         String image_url = getIntent().getExtras().getString("anime_img");
 
+
+
+
+
         //initializing views
 
 

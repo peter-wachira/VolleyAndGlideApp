@@ -1,11 +1,13 @@
 package com.volleyglide.parsejsonapp.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.volleyglide.parsejsonapp.activities.AnimeActivity;
 import com.volleyglide.parsejsonapp.model.Anime;
 import com.volleyglide.parsejsonapp.R;
 
@@ -46,7 +49,29 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         LayoutInflater inflater = LayoutInflater.from(mContext);
         view = inflater.inflate(R.layout.anime_row_item,parent,false);
 
-        return  new MyViewHolder(view);
+
+        final MyViewHolder viewHolder = new MyViewHolder(view);
+        viewHolder.view_container.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                Intent i = new Intent(mContext, AnimeActivity.class);
+                i.putExtra("anime_name",mData.get(viewHolder.getAdapterPosition()).getName());
+                i.putExtra("anime_description",mData.get(viewHolder.getAdapterPosition()).getDescription());
+                i.putExtra("anime_studio",mData.get(viewHolder.getAdapterPosition()).getDescription());
+                i.putExtra("anime_category",mData.get(viewHolder.getAdapterPosition()).getCategorie());
+                i.putExtra("anime_nb_episode",mData.get(viewHolder.getAdapterPosition()).getNb_episode());
+                i.putExtra("anime_rating",mData.get(viewHolder.getAdapterPosition()).getRating());
+                i.putExtra("anime_img",mData.get(viewHolder.getAdapterPosition()).getImage_url());
+
+
+                mContext.startActivity(i);
+            }
+        });
+
+
+        return  viewHolder;
 
     }
 
@@ -76,6 +101,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         TextView tv_studio;
         TextView tv_category;
         ImageView img_thumbnail;
+        LinearLayout view_container;
 
 
 
@@ -84,6 +110,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
+            view_container =itemView.findViewById(R.id.container);
             tv_name = itemView.findViewById(R.id.anime_name);
             tv_category = itemView.findViewById(R.id.categorie);
             tv_rating = itemView.findViewById(R.id.rating);
