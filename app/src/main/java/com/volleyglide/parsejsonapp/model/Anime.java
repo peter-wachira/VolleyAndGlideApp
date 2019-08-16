@@ -6,7 +6,7 @@ public class Anime {
     private String name;
     private String Description;
     private  String rating;
-    private  String nb_episode;
+    private  int nb_episode;
     private String categorie;
     private  String studio;
     private String image_url;
@@ -14,7 +14,7 @@ public class Anime {
     public Anime() {
     }
 
-    public Anime(String name, String description, String rating, String nb_episode, String categorie, String studio, String image_url) {
+    public Anime(String name, String description, String rating, int nb_episode, String categorie, String studio, String image_url) {
         this.name = name;
         Description = description;
         this.rating = rating;
@@ -37,7 +37,7 @@ public class Anime {
         return rating;
     }
 
-    public String getNb_episode() {
+    public int getNb_episode() {
         return nb_episode;
     }
 
@@ -68,7 +68,7 @@ public class Anime {
         this.rating = rating;
     }
 
-    public void setNb_episode(String nb_episode) {
+    public void setNb_episode(int nb_episode) {
         this.nb_episode = nb_episode;
     }
 
